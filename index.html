@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Job Tracker </title>
+    <!-- Google Fonts  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+<!-- Tailwind Css  and daisy ui-->
+   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <!-- Font AweSome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        *{
+            body{
+               font-family: "Geist", sans-serif;  
+            }
+        }
+    </style>
 </head>
-<body>
-    <h1>Job Tracker</h1>
+<body class="w-[80%] mx-auto py-14">
+   <header>
+ <h1 class="text-4xl font-bold">Job Application Tracker</h1>
+ <!--   -->
+    <div class="jobTracker gap-3 grid grid-cols-3 justify-between mt-6">
+      <div class="p-6 shadow-xl rounded-2xl">
+        <p >Total</p>
+        <h2 class="font-bold" id="total">0</h2>
+      </div>
+      <div class="p-6 shadow-xl rounded-2xl">
+        <p >InterView</p>
+        <h2 class="text-green-600 font-bold" id="interview">0</h2>
+      </div>
+      <div class="p-6 shadow-xl rounded-2xl">
+        <p >reject</p>
+        <h2 class="text-red-600 font-bold" id="reject">0</h2>
+      </div>
+    </div>
+   </header>
+   <hr class="mt-8">
+  <section class="mt-8">
+     <h2>Available Jobs</h2>
+     <div class="mt-3">
+        <button  onclick="toggleStyle('all-filter-btn')"  id="all-filter-btn" class="btn bg-[#3b82f6FF]  py-2 px-7 text-white ">All</button>
+        <button onclick="toggleStyle('interview-btn')"  id="interview-btn" class="btn ">Interview</button>
+        <button  onclick="toggleStyle('rejected-btn')" id="rejected-btn"  class="btn  ">Rejeted</button>
+     </div>
+  </section>
+     <main>
+        <div id="jobContainer" class="mt-10 space-y-6">
+            
+        </div>
+     </main>
+  <script src="script.js"></script>
 </body>
 </html>
