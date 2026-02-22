@@ -23,35 +23,63 @@
     </style>
 </head>
 <body class="w-[80%] mx-auto py-14">
-   <header>
+   <header class="sticky top-0 z-50">
  <h1 class="text-4xl font-bold">Job Application Tracker</h1>
  <!--   -->
     <div class="jobTracker gap-3 grid grid-cols-3 justify-between mt-6">
       <div class="p-6 shadow-xl rounded-2xl">
-        <p >Total</p>
-        <h2 class="font-bold" id="total">0</h2>
+        <p  class="">Total</p>
+        <h2 class="font-bold  jobsCount" id="total">0</h2>
       </div>
       <div class="p-6 shadow-xl rounded-2xl">
         <p >InterView</p>
-        <h2 class="text-green-600 font-bold" id="interview">0</h2>
+        <h2 class="text-green-600 interviewCount font-bold" id="interview">0</h2>
       </div>
       <div class="p-6 shadow-xl rounded-2xl">
         <p >reject</p>
-        <h2 class="text-red-600 font-bold" id="reject">0</h2>
+        <h2 class="text-red-600 font-bold rejectedCount" id="reject">0</h2>
       </div>
     </div>
    </header>
    <hr class="mt-8">
   <section class="mt-8">
-     <h2>Available Jobs</h2>
+     <div class="flex justify-between items-center">
+      <h2>Available Jobs</h2>
+      <p class="jobsCountAll"></p>
+     </div>
      <div class="mt-3">
         <button  onclick="toggleStyle('all-filter-btn')"  id="all-filter-btn" class="btn bg-[#3b82f6FF]  py-2 px-7 text-white ">All</button>
-        <button onclick="toggleStyle('interview-btn')"  id="interview-btn" class="btn ">Interview</button>
-        <button  onclick="toggleStyle('rejected-btn')" id="rejected-btn"  class="btn  ">Rejeted</button>
+        <button onclick="toggleStyle('interview-filter-btn')"  id="interview-filter-btn" class="btn ">Interview</button>
+        <button  onclick="toggleStyle('rejected-filter-btn')" id="rejected-filter-btn"  class="btn  ">Rejeted</button>
      </div>
   </section>
      <main>
-        <div id="jobContainer" class="mt-10 space-y-6">
+
+       <div class="notAvailableJobs hidden mt-7">
+         <div class="min-h-[400px] flex items-center justify-center bg-gray-100 rounded-lg ">
+
+  <div class="text-center">
+ 
+    <div class="flex justify-center mb-4">
+      <i class="fa-solid fa-file-lines text-blue-400 text-6xl"></i>
+    </div>
+
+ 
+    <h2 class="text-xl font-semibold text-gray-800 mb-2">
+      No jobs available
+    </h2>
+
+    
+    <p class="text-gray-500 text-sm">
+      Check back soon for new job opportunities
+    </p>
+
+  </div>
+
+</div>
+       </div>
+
+        <div id="jobContainer" class="mt-10 space-y-6 ">
             
         </div>
      </main>
