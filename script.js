@@ -12,7 +12,6 @@ const jobs = [
 const interViewList = [];
 const rejectedList = [];
 
-/* ⭐ signature concept from plant project */
 let currentStatus = "all-filter-btn";
 
 const container = document.getElementById("jobContainer");
@@ -25,11 +24,21 @@ const renderRejected = document.querySelector('.rejectedRender');
 const notAvailableJobs = document.querySelector('.notAvailableJobs');
 
 document.querySelector('.jobsCount').innerText = jobs.length;
-document.querySelector('.jobsCountAll').innerText = jobs.length + " Jobs";
+
+function updateTotalUI(){
+    document.querySelector('.jobsCount').innerText = jobs.length;
+
+    document.querySelector('.jobsCountAll').innerText =
+        "All: " + jobs.length +
+        " | Interview: " + interViewList.length +
+        " | Rejected: " + rejectedList.length;
+}
 
 function calculateCount(){
     document.querySelector('.interviewCount').innerText = interViewList.length;
     document.querySelector('.rejectedCount').innerText = rejectedList.length;
+
+    updateTotalUI(); 
 }
 
 function copyArray(source,target){
@@ -39,7 +48,6 @@ function copyArray(source,target){
     }
 }
 
-/* ⭐ signature from plant project */
 function toggleStyle(id){
 
     currentStatus = id;
@@ -92,7 +100,6 @@ mainContainer.addEventListener("click",function(event){
 
     const target = event.target;
 
-    // ===== INTERVIEW =====
     if(target.classList.contains("interviewBtn")){
         const card = target.closest(".card");
 
@@ -117,14 +124,12 @@ mainContainer.addEventListener("click",function(event){
         });
         copyArray(newRejected,rejectedList);
 
-        /* ⭐ signature behaviour */
         if(currentStatus==="rejected-filter-btn") renderRejectedViews();
 
         calculateCount();
         renderInterViews();
     }
 
-    // ===== REJECTED =====
     else if(target.classList.contains("rejectedBtn")){
         const card = target.closest(".card");
 
@@ -149,17 +154,21 @@ mainContainer.addEventListener("click",function(event){
         });
         copyArray(newInterview,interViewList);
 
-        /* ⭐ signature behaviour */
         if(currentStatus==="interview-filter-btn") renderInterViews();
 
         calculateCount();
         renderRejectedViews();
     }
 
-    // ===== DELETE =====
+    
     else if(target.classList.contains("fa-trash-can")){
         const card = target.closest(".card");
         const companyName = card.querySelector(".companyName").innerText;
+
+        const newJobs = jobs.filter(function(item){
+            return (item.company || item.companyname) !== companyName;
+        });
+        copyArray(newJobs, jobs);
 
         const newInterview=interViewList.filter(function(item){
             return item.companyname!==companyName;
@@ -180,7 +189,6 @@ mainContainer.addEventListener("click",function(event){
 
 });
 
-/* CARD + RENDER unchanged */
 function createCard(job){
     const card=document.createElement('div');
     card.className='card flex border p-8 justify-between mb-5';
@@ -228,3 +236,4 @@ function renderRejectedViews(){
 
 renderJobs();
 calculateCount();
+updateTotalUI();
